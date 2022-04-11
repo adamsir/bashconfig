@@ -1,0 +1,19 @@
+# Python
+alias python="python3"
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENV_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_PYTHON=$VIRTUALENV_PYTHON
+alias mkvirtualenv="mkvirtualenv --python=$VIRTUALENV_PYTHON"
+source /usr/local/bin/virtualenvwrapper.sh
+
+# Golang
+export GOPATH=$HOME/projects
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+# Node version switcher 'n'
+export N_PREFIX=$HOME/.n
+export PATH=$N_PREFIX/bin:$PATH
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
