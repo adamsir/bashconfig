@@ -11,5 +11,5 @@ alias l='ls -CF'
 alias clip='clip.exe'
 
 # misc
-alias reload='source ~/.bashrc; clear; echo "Config successfully loaded"'
+alias reload='source ~/.bashrc; echo "Config successfully loaded"'
 alias cc='clear'
