@@ -1,8 +1,8 @@
 # git
-alias g='git'
 alias gst='git status'
 alias gco='git checkout'
 alias glg='git log'
+alias gpl='git pull'
 
 # ls
 alias ll='ls -alF'
