@@ -4,7 +4,17 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENV_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_PYTHON=$VIRTUALENV_PYTHON
 alias mkvirtualenv="mkvirtualenv --python=$VIRTUALENV_PYTHON"
-source /usr/local/bin/virtualenvwrapper.sh
+
+function start_python_virtualenv {
+  source /usr/local/bin/virtualenvwrapper.sh
+}
+
+if ! [ -x "$(command -v /usr/local/bin/virtualenvwrapper.sh)" ]; then
+  echo 'Error: mkvirtualenv is not installed.' >&2
+  exit 1
+else
+  start_python_virtualenv;
+fi
 
 # Golang
 export GOPATH=$HOME/projects
@@ -13,3 +23,22 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 # Node version switcher 'n'
 export N_PREFIX=$HOME/.n
 export PATH=$N_PREFIX/bin:$PATH
+
+# Postgres
+function start_psql {
+  SERVICE="postgres"
+  if ! pgrep -x "$SERVICE" >/dev/null
+  then
+      echo "$SERVICE restarting"
+      sudo pg_ctlcluster 14 main start
+      sudo service postgresql restart
+      echo "Postgres 14 started"
+  fi
+}
+if ! [ -x "$(command -v pg_ctlcluster)" ]; then
+  echo 'Error: pg is not installed.' >&2
+  exit 1
+else
+  start_psql;
+fi
+
