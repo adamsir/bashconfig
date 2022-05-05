@@ -25,7 +25,7 @@ export N_PREFIX=$HOME/.n
 export PATH=$N_PREFIX/bin:$PATH
 
 # Postgres
-function start_psql {
+function start_psql_service {
   SERVICE="postgres"
   if ! pgrep -x "$SERVICE" >/dev/null
   then
@@ -35,10 +35,12 @@ function start_psql {
       echo "Postgres 14 started"
   fi
 }
-if ! [ -x "$(command -v pg_ctlcluster)" ]; then
-  echo 'Error: pg is not installed.' >&2
-  exit 1
-else
-  start_psql;
-fi
 
+function start_psql {
+  if ! [ -x "$(command -v pg_ctlcluster)" ]; then
+    echo 'Error: pg is not installed.' >&2
+    exit 1
+  else
+    start_psql_service;
+  fi
+}
